@@ -1,1 +1,1 @@
-eval $(eval sh/flanalystsh $1)
+eval $(eval sh/flanalystsh $1 $2)
