@@ -5,14 +5,14 @@ import (
 )
 
 const testPushDeploy = `
-sh/sh/flanalyst.sh test \
-&& sh/sh/flanalyst.sh push \
+sh/sh/flanalyst.sh test &&
+&& sh/sh/flanalyst.sh push &&
 && sh/sh/flanalyst.sh remote deploy
 `
 
 const test = `
-sh/sh/flanalyst.sh copyLibs && \
-./gradlew test -Denv=local --parallel\
+sh/sh/flanalyst.sh copyLibs &&
+./gradlew test -Denv=local --parallel
 `
 
 const remote = `
@@ -20,9 +20,9 @@ const remote = `
 ssh -t $remoteUser@$remoteHost "cd $deployDir && sh/sh/flanalyst.sh $2"
 `
 const deploy = `
-sh/sh/flanalyst.sh pull && \
-sh/sh/flanalyst.sh deployCopyLibs && \
-sh/sh/flanalyst.sh build && \
+sh/sh/flanalyst.sh pull && 
+sh/sh/flanalyst.sh deployCopyLibs &&
+sh/sh/flanalyst.sh build &&
 sh/sh/flanalyst.sh dockerUp
 `
 const deployCopyLibs = `
