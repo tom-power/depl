@@ -1,0 +1,3 @@
+install.config.sh
+!config**
+config/.config/ssh-run-scripts/config.yaml
