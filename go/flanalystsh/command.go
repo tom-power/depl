@@ -22,6 +22,7 @@ sh/sh/flanalyst.sh pull \
 `
 const catLog = "sh/sh/catLog.sh"
 const catEvent = "sh/sh/catEvent.sh"
+const buildLib = "sh/sh/buildLib.sh"
 
 var Commands = map[string]string{
 	"test":           "sh/copyLibs.sh && ./gradlew test -Denv=local --parallel",
@@ -34,7 +35,8 @@ var Commands = map[string]string{
 	"deploy":         deploy,
 	"remote":         remote,
 	"catLog":         catLog,
-	"catEvent":       catEvent}
+	"catEvent":       catEvent,
+	"buildLib":       buildLib}
 
 var GetCommand = func(command string) (string, error) {
 	sh := Commands[command]
