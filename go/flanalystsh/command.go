@@ -10,22 +10,34 @@ sh/sh/flanalyst.sh test \
 && sh/sh/flanalyst.sh remote deploy
 `
 
+const test = `
+sh/sh/flanalyst.sh copyLibs && \
+./gradlew test -Denv=local --parallel\
+`
+
 const remote = `
 . sh/.env &&
 ssh -t $remoteUser@$remoteHost "cd $deployDir && sh/sh/flanalyst.sh $2"
 `
 const deploy = `
-sh/sh/flanalyst.sh pull \
-&& sh/deployCopyLibs.sh \
-&& sh/sh/flanalyst.sh build \
-&& sh/sh/flanalyst.sh dockerUp
+sh/sh/flanalyst.sh pull && \
+sh/sh/flanalyst.sh deployCopyLibs && \
+sh/sh/flanalyst.sh build && \
+sh/sh/flanalyst.sh dockerUp
 `
+const deployCopyLibs = `
+cp ../flanalyst-lib.jar ./libs/ &&
+cp ../flanalystsh ./sh/sh/ &&
+cp ../flanalyst.sh ./sh/sh/
+`
+
 const catLog = "sh/sh/catLog.sh"
 const catEvent = "sh/sh/catEvent.sh"
 const buildLib = "sh/sh/buildLib.sh"
 
 var Commands = map[string]string{
-	"test":           "sh/copyLibs.sh && ./gradlew test -Denv=local --parallel",
+	"copyLibs":       "sh/sh/copyLibs.sh",
+	"test":           test,
 	"push":           "git push origin master -f",
 	"testPushDeploy": testPushDeploy,
 	"pull":           "git fetch --all && git reset --hard origin/master",
@@ -33,6 +45,7 @@ var Commands = map[string]string{
 	"dockerUp":       "docker-compose -f docker/docker-compose-app.yml up --build --detach",
 	"dockerDown":     "docker-compose -f docker/docker-compose-app.yml down",
 	"deploy":         deploy,
+	"deployCopyLibs": deployCopyLibs,
 	"remote":         remote,
 	"catLog":         catLog,
 	"catEvent":       catEvent,
