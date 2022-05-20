@@ -5,9 +5,9 @@ $root/build.sh
 
 targets=(
   concher/concher
-  flanalyst/flanalyst
-  flanalyst-clock
-  flanalyst-lib
+  # flanalyst/flanalyst
+  # flanalyst-clock
+  # flanalyst-lib
 )
 
 for target in "${targets[@]}"

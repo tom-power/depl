@@ -21,6 +21,7 @@ sh/sh/flanalyst.sh pull \
 && sh/sh/flanalyst.sh dockerUp
 `
 const catLog = `
+#!/bin/sh
 while read line; do
   if jq -e . >/dev/null 2>&1 <<<"$line"; then
     echo $line | jq
@@ -29,7 +30,9 @@ while read line; do
   fi
 done < <(tail docker/data/log)
 `
-const catEvent = "jq -R 'try fromjson catch .' < docker/data/event"
+const catEvent = `
+#!/bin/sh
+`
 
 var Commands = map[string]string{
 	"test":           "sh/copyLibs.sh && ./gradlew test -Denv=local --parallel",
