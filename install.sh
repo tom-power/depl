@@ -12,8 +12,8 @@ targets=(
 
 for target in "${targets[@]}"
 do
-  cp $root/go/build/flanalystsh ~/proj/os/flanalyst.ovh/$target/sh/
-  cp $root/sh/flanalyst.sh ~/proj/os/flanalyst.ovh/$target/sh/
+  cp $root/go/build/flanalystsh ~/proj/os/flanalyst.ovh/$target/sh/sh/
+  cp $root/sh/flanalyst.sh ~/proj/os/flanalyst.ovh/$target/sh/sh/
 done
 
 echo "installed"

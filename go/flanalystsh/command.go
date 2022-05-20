@@ -1,20 +1,20 @@
 package flanalystsh
 
 const testPushDeploy = `
-sh/flanalyst.sh test \
-&& sh/flanalyst.sh push \
-&& sh/flanalyst.sh remote deploy
+sh/sh/flanalyst.sh test \
+&& sh/sh/flanalyst.sh push \
+&& sh/sh/flanalyst.sh remote deploy
 `
 
 const remote = `
 . sh/.env &&
-ssh -t $remoteUser@$remoteHost "cd $deployDir && sh/flanalyst.sh $2"
+ssh -t $remoteUser@$remoteHost "cd $deployDir && sh/sh/flanalyst.sh $2"
 `
 const deploy = `
-sh/flanalyst.sh pull \
+sh/sh/flanalyst.sh pull \
 && sh/deployCopyLibs.sh \
-&& sh/flanalyst.sh build \
-&& sh/flanalyst.sh dockerUp
+&& sh/sh/flanalyst.sh build \
+&& sh/sh/flanalyst.sh dockerUp
 `
 const catLog = `
 #!/bin/bash
