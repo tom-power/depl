@@ -26,9 +26,9 @@ sh/sh/flanalyst.sh build && \
 sh/sh/flanalyst.sh dockerUp
 `
 const deployCopyLibs = `
-cp ../flanalyst-lib.jar ./libs/ &&
-cp ../flanalystsh ./sh/sh/ &&
-cp ../flanalyst.sh ./sh/sh/
+cp -p ../flanalyst-lib.jar ./libs/ &&
+cp -p ../flanalystsh ./sh/sh/ &&
+cp -p ../flanalyst.sh ./sh/sh/
 `
 
 const catLog = "sh/sh/catLog.sh"
