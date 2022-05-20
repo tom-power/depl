@@ -20,19 +20,8 @@ sh/sh/flanalyst.sh pull \
 && sh/sh/flanalyst.sh build \
 && sh/sh/flanalyst.sh dockerUp
 `
-const catLog = `
-#!/bin/sh
-while read line; do
-  if jq -e . >/dev/null 2>&1 <<<"$line"; then
-    echo $line | jq
-  else
-    echo $line
-  fi
-done < <(tail docker/data/log)
-`
-const catEvent = `
-#!/bin/sh
-`
+const catLog = "sh/sh/catLog.sh"
+const catEvent = "sh/sh/catEvent.sh"
 
 var Commands = map[string]string{
 	"test":           "sh/copyLibs.sh && ./gradlew test -Denv=local --parallel",
@@ -45,7 +34,7 @@ var Commands = map[string]string{
 	"deploy":         deploy,
 	"remote":         remote,
 	"catLog":         catLog,
-	"catEvent":       catLog}
+	"catEvent":       catEvent}
 
 var GetCommand = func(command string) (string, error) {
 	sh := Commands[command]
