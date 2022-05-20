@@ -1,5 +1,9 @@
 package flanalystsh
 
+import (
+	"errors"
+)
+
 const testPushDeploy = `
 sh/sh/flanalyst.sh test \
 && sh/sh/flanalyst.sh push \
@@ -17,7 +21,6 @@ sh/sh/flanalyst.sh pull \
 && sh/sh/flanalyst.sh dockerUp
 `
 const catLog = `
-#!/bin/bash
 while read line; do
   if jq -e . >/dev/null 2>&1 <<<"$line"; then
     echo $line | jq
@@ -26,10 +29,7 @@ while read line; do
   fi
 done < <(tail docker/data/log)
 `
-const catEvent = `
-#!/bin/bash
-jq -R 'try fromjson catch .' < docker/data/event
-`
+const catEvent = "jq -R 'try fromjson catch .' < docker/data/event"
 
 var Commands = map[string]string{
 	"test":           "sh/copyLibs.sh && ./gradlew test -Denv=local --parallel",
@@ -44,6 +44,10 @@ var Commands = map[string]string{
 	"catLog":         catLog,
 	"catEvent":       catLog}
 
-var GetCommand = func(command string) string {
-	return Commands[command]
+var GetCommand = func(command string) (string, error) {
+	sh := Commands[command]
+	if sh == "" {
+		return "", errors.New("unknown command " + command)
+	}
+	return sh, nil
 }
