@@ -7,7 +7,7 @@ targets=(
   concher/concher
   # flanalyst/flanalyst
   # flanalyst-clock
-  # flanalyst-lib
+  flanalyst-lib
 )
 
 for target in "${targets[@]}"
