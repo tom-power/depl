@@ -36,8 +36,8 @@ const remote = `
 ssh -t $remoteUser@$remoteHost "cd $deployDir && sh/sh/flanalyst.sh $2"
 `
 const deployCopyLibs = `
-cp -p ../flanalyst-lib.jar ./libs/
-cp -p ../flanalystsh ./sh/sh/
+cp -p ../flanalyst-lib.jar ./libs/ &&
+cp -p ../flanalystsh ./sh/sh/ &&
 cp -p ../flanalyst.sh ./sh/sh/
 `
 const deploy = `
