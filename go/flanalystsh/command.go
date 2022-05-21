@@ -10,8 +10,32 @@ sh/sh/flanalyst.sh test &&
 && sh/sh/flanalyst.sh push &&
 && sh/sh/flanalyst.sh remote deploy
 `
+const copyLibs = `
+cp -p ../flanalyst-lib.jar ./libs/
+cp -p ../flanalyst-lib-javadoc.jar ./libs/
+cp -p ../flanalyst-lib-sources.jar ./libs/
+
+cp -p ../flanalyst-testing.jar ./libs/
+cp -p ../flanalyst-testing-javadoc.jar ./libs/
+cp -p ../flanalyst-testing-sources.jar ./libs/
+
+cp -p ../flanalystsh ./sh/sh/
+cp -p ../flanalyst.sh ./sh/sh/
+`
+const copyLibsNested = `
+cp -p ../../flanalyst-lib.jar ./libs/
+cp -p ../../flanalyst-lib-javadoc.jar ./libs/
+cp -p ../../flanalyst-lib-sources.jar ./libs/
+
+cp -p ../../flanalyst-testing.jar ./libs/
+cp -p ../../flanalyst-testing-javadoc.jar ./libs/
+cp -p ../../flanalyst-testing-sources.jar ./libs/
+
+cp -p ../../flanalystsh ./sh/sh/
+cp -p ../../flanalyst.sh ./sh/sh/
+`
+
 const test = `
-sh/sh/flanalyst.sh copyLibs &&
 ./gradlew test -Denv=local --parallel
 `
 const remote = `
@@ -33,7 +57,8 @@ const catEvent = "sh/sh/catEvent.sh"
 const buildLib = "sh/sh/buildLib.sh"
 
 var Commands = map[string]string{
-	"copyLibs":       "sh/sh/copyLibs.sh",
+	"copyLibs":       copyLibs,
+	"copyLibsNested": copyLibsNested,
 	"test":           test,
 	"push":           "git push origin master -f",
 	"testPushDeploy": testPushDeploy,
