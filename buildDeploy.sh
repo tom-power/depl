@@ -5,4 +5,5 @@ $root/build.sh
 
 # local
 cp -p $root/go/build/flanalystsh $root/../
+cp -p $root/go/build/flanalystsh ~/bin/
 cp -p $root/sh/flanalyst.sh $root/../
