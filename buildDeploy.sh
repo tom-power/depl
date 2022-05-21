@@ -1,6 +1,14 @@
 #!/bin/bash
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
+$root/build.sh
+
+# local
+cp -p $root/go/build/flanalystsh $root/../
+cp -p $root/sh/flanalyst.sh $root/../
+
+# remote
+git push origin master -f
 . $root/.env &&
 ssh -t $remoteUser@$remoteHost "\
 cd $deployDir && \
@@ -9,7 +17,4 @@ cd ./go &&
 ./build.sh &&
 cd ../
 cp -p ./go/build/flanalystsh ../
-cp -p ./sh/flanalyst.sh ../../"
-
-
-echo "installed remote"
+cp -p ./sh/flanalyst.sh ../"
