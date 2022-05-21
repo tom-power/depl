@@ -9,6 +9,6 @@ git push origin master -f
 ssh -t $remoteUser@$remoteHost "\
 cd $deployDir && \
 git fetch --all && git reset --hard origin/master && \
-cd ./go && ./build.sh && cd ../ &&
-cp -p ./go/build/flanalystsh ../ &&
+cd ./go && ./build.sh && cd ../ && \
+cp -p ./go/build/flanalystsh ../ && \
 cp -p ./sh/flanalyst.sh ../"
