@@ -2,6 +2,7 @@ package flanalystsh
 
 import (
 	"errors"
+	"strings"
 )
 
 const testPushDeploy = `
@@ -48,9 +49,21 @@ var Commands = map[string]string{
 	"buildLib":       buildLib}
 
 var GetCommand = func(command string) (string, error) {
+	if command == "list" {
+		return keysOfMap(Commands) + " list", nil
+	}
+
 	sh := Commands[command]
 	if sh == "" {
 		return "", errors.New("unknown command " + command)
 	}
 	return sh, nil
+}
+
+func keysOfMap(theMap map[string]string) string {
+	keys := make([]string, 0, len(theMap))
+	for key := range theMap {
+		keys = append(keys, key)
+	}
+	return strings.Join(keys, " ")
 }
