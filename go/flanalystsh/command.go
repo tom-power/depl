@@ -10,6 +10,9 @@ sh/sh/flanalyst.sh test &&
 && sh/sh/flanalyst.sh push &&
 && sh/sh/flanalyst.sh remote deploy
 `
+
+const buildLib = "sh/sh/buildLib.sh"
+
 const copyLibs = `
 cp -p ../flanalyst-lib.jar ./libs/
 cp -p ../flanalyst-lib-javadoc.jar ./libs/
@@ -54,9 +57,9 @@ cp -p ../flanalyst.sh ./sh/sh/
 `
 const catLog = "sh/sh/catLog.sh"
 const catEvent = "sh/sh/catEvent.sh"
-const buildLib = "sh/sh/buildLib.sh"
 
 var Commands = map[string]string{
+	"buildLib":       buildLib,
 	"copyLibs":       copyLibs,
 	"copyLibsNested": copyLibsNested,
 	"test":           test,
@@ -70,8 +73,7 @@ var Commands = map[string]string{
 	"deployCopyLibs": deployCopyLibs,
 	"remote":         remote,
 	"catLog":         catLog,
-	"catEvent":       catEvent,
-	"buildLib":       buildLib}
+	"catEvent":       catEvent}
 
 var GetCommand = func(command string) (string, error) {
 	if command == "list" {
