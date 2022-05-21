@@ -9,28 +9,24 @@ sh/sh/flanalyst.sh test &&
 && sh/sh/flanalyst.sh push &&
 && sh/sh/flanalyst.sh remote deploy
 `
-
 const test = `
 sh/sh/flanalyst.sh copyLibs &&
 ./gradlew test -Denv=local --parallel
 `
-
 const remote = `
 . sh/.env &&
 ssh -t $remoteUser@$remoteHost "cd $deployDir && sh/sh/flanalyst.sh $2"
 `
 const deploy = `
-sh/sh/flanalyst.sh pull && 
-sh/sh/flanalyst.sh deployCopyLibs &&
+sh/sh/flanalyst.sh pull &&
 sh/sh/flanalyst.sh build &&
 sh/sh/flanalyst.sh dockerUp
 `
 const deployCopyLibs = `
-cp -p ../flanalyst-lib.jar ./libs/ &&
-cp -p ../flanalystsh ./sh/sh/ &&
+cp -p ../flanalyst-lib.jar ./libs/
+cp -p ../flanalystsh ./sh/sh/
 cp -p ../flanalyst.sh ./sh/sh/
 `
-
 const catLog = "sh/sh/catLog.sh"
 const catEvent = "sh/sh/catEvent.sh"
 const buildLib = "sh/sh/buildLib.sh"
