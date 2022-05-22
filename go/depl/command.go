@@ -28,7 +28,7 @@ for lib in "${libs[@]}"; do
 
   cp -p ../../$lib-testing.jar ./libs/ &&
   cp -p ../../$lib-testing-javadoc.jar ./libs/ &&
-  cp -p ../../$lib-testing-sources.jar ./libs/ &&
+  cp -p ../../$lib-testing-sources.jar ./libs/
 done
 `
 const remote = `
