@@ -53,8 +53,8 @@ sh/depl.sh deployCopyLibs &&
 sh/depl.sh shadowJar &&
 sh/depl.sh dockerUp
 `
-const catLog = "sh/catLog.sh"
-const catEvent = "sh/catEvent.sh"
+const catLog = "sh/sh/catLog.sh"
+const catEvent = "sh/sh/catEvent.sh"
 
 var Commands = map[string]string{
 	"buildLib":       buildLib,
