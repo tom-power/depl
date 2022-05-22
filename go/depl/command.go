@@ -29,7 +29,7 @@ cp -p ../../$lib-testing-sources.jar ./libs/
 `
 const remote = `
 . sh/.env &&
-ssh -t $remoteUser@$remoteHost "cd $deployDir && sh/depl.sh $2"
+ssh -t $remoteUser@$remoteHost "bash --login -c 'cd $deployDir && sh/depl.sh $2'"
 `
 const deployCopyLibs = `
 cp -p ../flanalyst-lib.jar ./libs/ &&
