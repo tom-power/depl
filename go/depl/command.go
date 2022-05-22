@@ -1,53 +1,53 @@
-package flanalystsh
+package depl
 
 import (
 	"errors"
 	"strings"
 )
 
-const buildLib = "sh/sh/buildLib.sh"
+const buildLib = "sh/buildLib.sh"
 
 const copyLibs = `
-cp -p ../flanalyst-lib.jar ./libs/ &&
-cp -p ../flanalyst-lib-javadoc.jar ./libs/ &&
-cp -p ../flanalyst-lib-sources.jar ./libs/ &&
+. sh/.env &&
+for lib in "${libs[@]}"; do
+  cp -p ../$lib-lib.jar ./libs/ &&
+  cp -p ../$lib-lib-javadoc.jar ./libs/ &&
+  cp -p ../$lib-lib-sources.jar ./libs/ &&
 
-cp -p ../flanalyst-testing.jar ./libs/ &&
-cp -p ../flanalyst-testing-javadoc.jar ./libs/ &&
-cp -p ../flanalyst-testing-sources.jar ./libs/ &&
-
-cp -p ../flanalystsh ./sh/sh/ &&
-cp -p ../flanalyst.sh ./sh/sh/
+  cp -p ../$lib-testing.jar ./libs/ &&
+  cp -p ../$lib-testing-javadoc.jar ./libs/ &&
+  cp -p ../$lib-testing-sources.jar ./libs/
+done
 `
 const copyLibsNested = `
-cp -p ../../flanalyst-lib.jar ./libs/ &&
-cp -p ../../flanalyst-lib-javadoc.jar ./libs/ &&
-cp -p ../../flanalyst-lib-sources.jar ./libs/ &&
+. sh/.env &&
+for lib in "${libs[@]}"; do
+  cp -p ../../$lib-lib.jar ./libs/ &&
+  cp -p ../../$lib-lib-javadoc.jar ./libs/ &&
+  cp -p ../../$lib-lib-sources.jar ./libs/ &&
 
-cp -p ../../flanalyst-testing.jar ./libs/ &&
-cp -p ../../flanalyst-testing-javadoc.jar ./libs/ &&
-cp -p ../../flanalyst-testing-sources.jar ./libs/ &&
-
-cp -p ../../flanalystsh ./sh/sh/ &&
-cp -p ../../flanalyst.sh ./sh/sh/
+  cp -p ../../$lib-testing.jar ./libs/ &&
+  cp -p ../../$lib-testing-javadoc.jar ./libs/ &&
+  cp -p ../../$lib-testing-sources.jar ./libs/ &&
+done
 `
 const remote = `
 . sh/.env &&
-ssh -t $remoteUser@$remoteHost "cd $deployDir && sh/sh/flanalyst.sh $2"
+ssh -t $remoteUser@$remoteHost "cd $deployDir && sh/depl.sh $2"
 `
 const deployCopyLibs = `
 cp -p ../flanalyst-lib.jar ./libs/ &&
-cp -p ../flanalystsh ./sh/sh/ &&
-cp -p ../flanalyst.sh ./sh/sh/
+cp -p ../depl ./sh/ &&
+cp -p ../depl.sh ./sh/
 `
 const deploy = `
-sh/sh/flanalyst.sh pull &&
-sh/sh/flanalyst.sh deployCopyLibs &&
-sh/sh/flanalyst.sh shadowJar &&
-sh/sh/flanalyst.sh dockerUp
+sh/depl.sh pull &&
+sh/depl.sh deployCopyLibs &&
+sh/depl.sh shadowJar &&
+sh/depl.sh dockerUp
 `
-const catLog = "sh/sh/catLog.sh"
-const catEvent = "sh/sh/catEvent.sh"
+const catLog = "sh/catLog.sh"
+const catEvent = "sh/catEvent.sh"
 
 var Commands = map[string]string{
 	"buildLib":       buildLib,
