@@ -1,23 +1,23 @@
-package flanalystsh_test
+package depl_test
 
 import (
-	"../flanalystsh"
+	"../depl"
 	"strings"
 	"testing"
 )
 
 func Test_command(t *testing.T) {
 	t.Run("can run command", func(t *testing.T) {
-		for command, value := range flanalystsh.Commands {
-			sh, _ := flanalystsh.GetCommand(command)
+		for command, value := range depl.Commands {
+			sh, _ := depl.GetCommand(command)
 			if !strings.Contains(sh, value) {
 				t.Errorf("'%v' should contain '%v'", sh, value)
 			}
 		}
 	})
 	t.Run("can list commands", func(t *testing.T) {
-		sh, _ := flanalystsh.GetCommand("list")
-		for command, _ := range flanalystsh.Commands {
+		sh, _ := depl.GetCommand("list")
+		for command, _ := range depl.Commands {
 			if !strings.Contains(sh, command) {
 				t.Errorf("'%v' should contain '%v'", sh, command)
 			}

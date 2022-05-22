@@ -1,14 +1,14 @@
 package main
 
 import (
-	"./flanalystsh"
+	"./depl"
 	"fmt"
 	"log"
 	"os"
 )
 
 func main() {
-	sh, err := flanalystsh.GetCommand(os.Args[1])
+	sh, err := depl.GetCommand(os.Args[1])
 	if err != nil {
 		log.Fatal(err)
 	}
