@@ -9,27 +9,23 @@ const buildLib = "sh/buildLib.sh"
 
 const copyLibs = `
 . sh/.env &&
-for lib in "${libs[@]}"; do
-  cp -p ../$lib-lib.jar ./libs/ &&
-  cp -p ../$lib-lib-javadoc.jar ./libs/ &&
-  cp -p ../$lib-lib-sources.jar ./libs/ &&
+cp -p ../$lib-lib.jar ./libs/ &&
+cp -p ../$lib-lib-javadoc.jar ./libs/ &&
+cp -p ../$lib-lib-sources.jar ./libs/ &&
 
-  cp -p ../$lib-testing.jar ./libs/ &&
-  cp -p ../$lib-testing-javadoc.jar ./libs/ &&
-  cp -p ../$lib-testing-sources.jar ./libs/
-done
+cp -p ../$lib-testing.jar ./libs/ &&
+cp -p ../$lib-testing-javadoc.jar ./libs/ &&
+cp -p ../$lib-testing-sources.jar ./libs/
 `
 const copyLibsNested = `
 . sh/.env &&
-for lib in "${libs[@]}"; do
-  cp -p ../../$lib-lib.jar ./libs/ &&
-  cp -p ../../$lib-lib-javadoc.jar ./libs/ &&
-  cp -p ../../$lib-lib-sources.jar ./libs/ &&
+cp -p ../../$lib-lib.jar ./libs/ &&
+cp -p ../../$lib-lib-javadoc.jar ./libs/ &&
+cp -p ../../$lib-lib-sources.jar ./libs/ &&
 
-  cp -p ../../$lib-testing.jar ./libs/ &&
-  cp -p ../../$lib-testing-javadoc.jar ./libs/ &&
-  cp -p ../../$lib-testing-sources.jar ./libs/
-done
+cp -p ../../$lib-testing.jar ./libs/ &&
+cp -p ../../$lib-testing-javadoc.jar ./libs/ &&
+cp -p ../../$lib-testing-sources.jar ./libs/
 `
 const remote = `
 . sh/.env &&
