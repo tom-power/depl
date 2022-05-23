@@ -39,8 +39,10 @@ var dockerUp string
 //go:embed sh/deploy.sh
 var deploy string
 
+//go:embed sh/catEvent.sh
+var catEvent string
+
 const catLog = "sh/sh/catLog.sh"
-const catEvent = "sh/sh/catEvent.sh"
 
 var Commands = map[string]string{
 	"buildLib":       buildLib,
