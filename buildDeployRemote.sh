@@ -5,4 +5,4 @@ $root/buildDeploy.sh
 
 # remote
 . $root/.env &&
-scp ./go/build/depl $remoteUser@$remoteHost:/home/debian/bin/
+scp ./go/build/depl $remoteUser@$remoteHost:$deployDir
