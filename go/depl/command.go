@@ -42,7 +42,8 @@ var deploy string
 //go:embed sh/catEvent.sh
 var catEvent string
 
-const catLog = "sh/sh/catLog.sh"
+//go:embed sh/catLog.sh
+var catLog string
 
 var Commands = map[string]string{
 	"buildLib":       buildLib,
