@@ -1,56 +1,44 @@
 package depl
 
 import (
+	_ "embed"
 	"errors"
 	"strings"
 )
 
-const buildLib = `
-. sh/.env &&
-./gradlew build &&
+//go:embed sh/buildLib.sh
+var buildLib string
 
-cp lib/lib/build/libs/lib-1.0-SNAPSHOT.jar ../$lib-lib.jar &&
-cp lib/lib/build/libs/lib-1.0-SNAPSHOT-sources.jar ../$lib-lib-sources.jar &&
-cp lib/lib/build/libs/lib-1.0-SNAPSHOT-javadoc.jar ../$lib-lib-javadoc.jar &&
+//go:embed sh/copyLibs.sh
+var copyLibs string
 
-cp lib/testing/build/libs/testing-1.0-SNAPSHOT.jar ../$lib-testing.jar &&
-cp lib/testing/build/libs/testing-1.0-SNAPSHOT-sources.jar ../$lib-testing-sources.jar &&
-cp lib/testing/build/libs/testing-1.0-SNAPSHOT-javadoc.jar ../$lib-testing-javadoc.jar
-`
+//go:embed sh/copyLibsNested.sh
+var copyLibsNested string
 
-const copyLibs = `
-. sh/.env &&
-cp -p ../$lib-lib.jar ./libs/ &&
-cp -p ../$lib-lib-javadoc.jar ./libs/ &&
-cp -p ../$lib-lib-sources.jar ./libs/ &&
+//go:embed sh/test.sh
+var test string
 
-cp -p ../$lib-testing.jar ./libs/ &&
-cp -p ../$lib-testing-javadoc.jar ./libs/ &&
-cp -p ../$lib-testing-sources.jar ./libs/
-`
-const copyLibsNested = `
-. sh/.env &&
-cp -p ../../$lib-lib.jar ./libs/ &&
-cp -p ../../$lib-lib-javadoc.jar ./libs/ &&
-cp -p ../../$lib-lib-sources.jar ./libs/ &&
+//go:embed sh/push.sh
+var push string
 
-cp -p ../../$lib-testing.jar ./libs/ &&
-cp -p ../../$lib-testing-javadoc.jar ./libs/ &&
-cp -p ../../$lib-testing-sources.jar ./libs/
-`
-const remote = `
-. sh/.env &&
-ssh -t $remoteUser@$remoteHost "bash --login -c 'cd $deployDir && sh/depl.sh $2'"
-`
-const deployCopyLibs = `
-cp -p ../flanalyst-lib.jar ./libs/
-`
-const deploy = `
-sh/depl.sh pull &&
-sh/depl.sh deployCopyLibs &&
-sh/depl.sh shadowJar &&
-sh/depl.sh dockerUp
-`
+//go:embed sh/remote.sh
+var remote string
+
+//go:embed sh/pull.sh
+var pull string
+
+//go:embed sh/deployCopyLibs.sh
+var deployCopyLibs string
+
+//go:embed sh/shadowJar.sh
+var shadowJar string
+
+//go:embed sh/dockerUp.sh
+var dockerUp string
+
+//go:embed sh/deploy.sh
+var deploy string
+
 const catLog = "sh/sh/catLog.sh"
 const catEvent = "sh/sh/catEvent.sh"
 
@@ -58,13 +46,13 @@ var Commands = map[string]string{
 	"buildLib":       buildLib,
 	"copyLibs":       copyLibs,
 	"copyLibsNested": copyLibsNested,
-	"test":           "./gradlew test -Denv=local --parallel",
-	"push":           "git push origin master -f",
+	"test":           test,
+	"push":           push,
 	"remote":         remote,
-	"pull":           "git fetch --all && git reset --hard origin/master",
+	"pull":           pull,
 	"deployCopyLibs": deployCopyLibs,
-	"shadowJar":      "./gradlew :app:shadowJar --no-daemon",
-	"dockerUp":       "docker-compose -f docker/docker-compose-app.yml up --build --detach",
+	"shadowJar":      shadowJar,
+	"dockerUp":       dockerUp,
 	"deploy":         deploy,
 	"catLog":         catLog,
 	"catEvent":       catEvent}

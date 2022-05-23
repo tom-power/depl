@@ -1,7 +1,7 @@
 package depl_test
 
 import (
-	"../depl"
+	"github.com/tom-power/depl/go/depl"
 	"strings"
 	"testing"
 )
