@@ -1,2 +1,2 @@
 . sh/.env &&
-ssh -t $remoteUser@$remoteHost "bash --login -c 'cd $deployDir && sh/depl.sh $2'"
+ssh -t $remoteUser@$remoteHost "bash --login -c 'cd $deployDir && depl.sh $2'"
