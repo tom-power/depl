@@ -1,4 +1,4 @@
-sh/depl.sh pull &&
-sh/depl.sh deployCopyLibs &&
-sh/depl.sh shadowJar &&
-sh/depl.sh dockerUp
+depl.sh pull &&
+depl.sh deployCopyLibs &&
+depl.sh shadowJar &&
+depl.sh dockerUp
