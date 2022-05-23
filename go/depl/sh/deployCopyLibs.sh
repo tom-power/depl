@@ -1,0 +1,1 @@
+cp -p ../flanalyst-lib.jar ./libs/

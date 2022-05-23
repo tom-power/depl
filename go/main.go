@@ -1,8 +1,8 @@
 package main
 
 import (
-	"./depl"
 	"fmt"
+	"github.com/tom-power/depl/go/depl"
 	"log"
 	"os"
 )
