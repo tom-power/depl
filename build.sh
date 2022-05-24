@@ -5,5 +5,5 @@ cd $root/go && ./build.sh
 
 # local
 cp -p \
-$root/go/build/depl $root/sh/depl.sh \
+$root/go/build/_depl $root/sh/depl.sh \
 ~/bin/

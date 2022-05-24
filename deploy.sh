@@ -6,5 +6,5 @@ $root/build.sh
 # remote
 . $root/.env &&
 scp -p \
-./go/build/depl $root/sh/depl.sh \
+./go/build/_depl $root/sh/depl.sh \
 $remoteUser@$remoteHost:$deployDir

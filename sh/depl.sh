@@ -1,2 +1,2 @@
 #!/bin/bash
-eval $(eval depl $1 $2)
+eval $(eval _depl $1 $2)
