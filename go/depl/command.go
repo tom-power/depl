@@ -60,22 +60,29 @@ var Commands = map[string]string{
 	"catLog":         catLog,
 	"catEvent":       catEvent}
 
-var GetCommand = func(command string) (string, error) {
-	if command == "list" {
-		return keysOfMap(Commands) + " list", nil
+var GetCommand = func(cmd string) (string, error) {
+	if cmd == "list" {
+		return commandList()
 	}
-
-	sh := Commands[command]
-	if sh == "" {
-		return "", errors.New("unknown command " + command)
-	}
-	return sh, nil
+  return command(cmd)
 }
 
-func keysOfMap(theMap map[string]string) string {
-	keys := make([]string, 0, len(theMap))
-	for key := range theMap {
-		keys = append(keys, key)
-	}
-	return strings.Join(keys, " ")
+func commandList() (string, error) {
+  return strings.Join(keys(Commands), " ") + " list", nil
+}
+
+func command(cmd string) (string, error) {
+  command := Commands[cmd]
+  if command == "" {
+    return "", errors.New("unknown command " + command)
+  }
+  return command, nil
+}
+
+func keys[K comparable, V any](m map[K]V) []K {
+    keys := make([]K, 0, len(m))
+    for k := range m {
+        keys = append(keys, k)
+    }
+    return keys
 }
