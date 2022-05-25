@@ -3,7 +3,5 @@ root="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
 cd $root/go && ./build.sh
 
-# local
-cp -p \
-$root/go/build/_depl $root/sh/depl.sh \
-~/bin/
+# copy to local
+cp -p $root/go/build/_depl $root/sh/depl.sh ~/bin/
