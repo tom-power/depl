@@ -11,9 +11,6 @@ var (
   //go:embed sh/copyLibs.sh
   copyLibs string
 
-  //go:embed sh/copyLibsNested.sh
-  copyLibsNested string
-
   //go:embed sh/test.sh
   test string
 
