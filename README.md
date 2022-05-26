@@ -21,7 +21,7 @@ install [go](https://golang.org/) and run `./build.sh`.
 Given a [project](https://github.com/tom-power/depl-example-project) you'd like to deploy, and a remote host you have ssh access to:
 
 ```bash
-cp ./example.project.env /path/to/project/.env
+cp ./example.project.env /path/to/project/sh/.env
 cd /path/to/project
 depl.sh init // sets up a remote git repository and a directory to deploy the project from
 ```
