@@ -1,1 +1,1 @@
-cp -p ../$lib-lib.jar ./libs/
+cp -p ../flanalyst-lib.jar ./libs/
