@@ -17,7 +17,7 @@ func Test_command(t *testing.T) {
 	})
 	t.Run("can list commands", func(t *testing.T) {
 		sh, _ := depl.GetCommand("list")
-		for command, _ := range depl.Commands {
+		for command := range depl.Commands {
 			if !strings.Contains(sh, command) {
 				t.Errorf("'%v' should contain '%v'", sh, command)
 			}
