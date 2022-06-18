@@ -2,8 +2,15 @@
 cmds=($(~/bin/_depl list))
 _arguments \
   '1:command:(${cmds})' \
-  '*:commands:->remote'
+  '2:remoteCommandOrExplain:->remoteCommandOrExplain' \
+  '3:remoteExplain:->remoteExplain'
 
-if [[ $state == 'remote' && $line[1] == 'remote' ]]; then
-  _arguments '2:remote:(${cmds})'
+if [[ $state == 'remoteCommandOrExplain' && ${line[1]} == 'remote' ]]; then
+  _arguments '2:remoteCommand:(${cmds})'
+else
+  _arguments '2:explain:(explain)'
+fi
+
+if [[ $state == 'remoteExplain' && ${line[2]} != '' ]]; then
+  _arguments '3:remoteExplain:(explain)'
 fi
