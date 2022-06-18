@@ -1,2 +1,7 @@
 #!/bin/bash
-eval $(eval _depl $1 $2)
+command=$(_depl "$1" "$2" "$3")
+if [ "$3" == "explain" ] || [ "$2" == "explain" ]; then
+  echo "$command"
+else
+  eval "$command"
+fi
