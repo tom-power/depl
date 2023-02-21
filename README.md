@@ -12,9 +12,9 @@ cd ./depl
 add .env file
 
 ```bash
-cp ./example.evn ./.env
+cp .config/example.env sh/.env
 ```
-install [go](https://golang.org/) and run `./build.sh`.
+install [go](https://golang.org/) and run `sh/build.sh`.
 
 ## Setup
 
