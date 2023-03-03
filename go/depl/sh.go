@@ -32,6 +32,9 @@ var (
 	//go:embed sh/dockerUp.sh
 	dockerUp string
 
+	//go:embed sh/dockerUpDev.sh
+	dockerUpDev string
+
 	//go:embed sh/deploy.sh
 	deploy string
 

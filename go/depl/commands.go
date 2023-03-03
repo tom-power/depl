@@ -10,6 +10,7 @@ var Commands = map[string]string{
 	"deployCopyLibs": deployCopyLibs,
 	"shadowJar":      shadowJar,
 	"dockerUp":       dockerUp,
+	"dockerUpDev":    dockerUpDev,
 	"deploy":         deploy,
 	"catLog":         catLog,
 	"catEvent":       catEvent}
