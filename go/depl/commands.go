@@ -3,6 +3,7 @@ package depl
 var Commands = map[string]string{
 	"buildLib":       buildLib,
 	"copyLibs":       copyLibs,
+	"build":          build,
 	"test":           test,
 	"push":           push,
 	"remote":         remote,
