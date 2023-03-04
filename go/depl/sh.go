@@ -11,6 +11,9 @@ var (
 	//go:embed sh/copyLibs.sh
 	copyLibs string
 
+	//go:embed sh/build.sh
+	build string
+
 	//go:embed sh/test.sh
 	test string
 
