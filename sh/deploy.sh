@@ -2,11 +2,15 @@
 # build
 sh/build.sh
 
+deplBinPath=./go/build/_depl
+deplShPath=./config/depl.sh
+deplCompletionPath=./config/_depl
+
 # copy to local
-cp -p ./go/build/_depl ./config/depl.sh ~/bin/
-# cp -p ./config/.oh-my-zsh/custom/completions/_depl ~/config/.oh-my-zsh/custom/completions/
+cp -p $deplBinPath $deplShPath ~/bin/
+#cp -p $deplCompletionPath ~/config/.oh-my-zsh/custom/completions/
 
 # copy to remote
 source sh/.env &&
-scp -p ./go/build/_depl ./config/depl.sh $remoteUser@$remoteHost:$deployDir
-# scp -p ./config/.oh-my-zsh/custom/completions/_depl $remoteUser@$remoteHost:~/config/.oh-my-zsh/custom/completions/
+scp -p $deplBinPath $deplShPath $remoteUser@$remoteHost:$deployDir
+#scp -p $deplCompletionPath $remoteUser@$remoteHost:~/config/.oh-my-zsh/custom/completions/
