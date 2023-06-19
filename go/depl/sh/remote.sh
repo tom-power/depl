@@ -1,2 +1,3 @@
 . sh/.env &&
-ssh -t $remoteUser@$remoteHost "bash --login -c 'cd $deployDir && depl.sh $2'"
+ssh -t $remoteUser@$remoteHost \
+"bash --login -c 'export defaultBranch=$defaultBranch; cd $deployDir && depl.sh $2'"
