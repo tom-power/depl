@@ -32,6 +32,9 @@ var (
 	//go:embed sh/shadowJar.sh
 	shadowJar string
 
+	//go:embed sh/submoduleUpdate.sh
+	submoduleUpdate string
+
 	//go:embed sh/dockerUp.sh
 	dockerUp string
 
