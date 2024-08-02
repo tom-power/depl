@@ -2,6 +2,7 @@ package depl
 
 import (
 	"errors"
+	"sort"
 	"strings"
 )
 
@@ -13,7 +14,14 @@ var GetCommand = func(cmd string) (string, error) {
 }
 
 func commandList() (string, error) {
-	return strings.Join(keys(Commands), " ") + " list", nil
+	return strings.Join(sorted(keys(Commands)), " ") + " list", nil
+}
+
+func sorted(input []string) []string {
+	sorted := make([]string, len(input))
+	copy(sorted, input)
+	sort.Strings(sorted)
+	return sorted
 }
 
 func keys[K comparable, V any](m map[K]V) []K {

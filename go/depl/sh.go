@@ -17,12 +17,11 @@ var (
 	//go:embed sh/dockerUpDev.sh
 	dockerUpDev string
 
-	//go:embed sh/gitPush.sh
-	gitPush string
-
 	//go:embed sh/gitPull.sh
 	gitPull string
 
+	//go:embed sh/gitPush.sh
+	gitPush string
 	//go:embed sh/gitSubmoduleUpdate.sh
 	gitSubmoduleUpdate string
 

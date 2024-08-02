@@ -1,10 +1,10 @@
 package depl
 
 var Commands = map[string]string{
+	"dockerCatEvent":     dockerCatEvent,
+	"dockerCatLog":       dockerCatLog,
 	"dockerUp":           dockerUp,
 	"dockerUpDev":        dockerUpDev,
-	"dockerCatLog":       dockerCatLog,
-	"dockerCatEvent":     dockerCatEvent,
 	"gitPull":            gitPull,
 	"gitPush":            gitPush,
 	"gitSubmoduleUpdate": gitSubmoduleUpdate,
