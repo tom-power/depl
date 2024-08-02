@@ -2,6 +2,7 @@ package depl
 
 import (
 	"errors"
+	"fmt"
 	"sort"
 	"strings"
 )
@@ -9,15 +10,16 @@ import (
 var ScriptFor = func(command string) (string, error) {
 	switch command {
 	case "list":
-		return commandList(), nil
+		return scriptForListCommands(), nil
 	default:
 		return scriptFor(command)
 
 	}
 }
 
-func commandList() string {
-	return strings.Join(sorted(keys(CommandsToScripts)), " ") + " list"
+func scriptForListCommands() string {
+	commands := strings.Join(sorted(keys(CommandsToScripts)), " ") + " list"
+	return fmt.Sprintf("echo \"%s\"", commands)
 }
 
 func sorted(input []string) []string {
