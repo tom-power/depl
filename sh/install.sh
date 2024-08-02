@@ -7,23 +7,27 @@ function echoWithStar() {
     echo "*$1"
 }
 
+source sh/.env
+
 # build
 echoWithStar "start"
 sh/build.sh
 echoWithStar "built"
 
 # copy to local
-cp -p $deplBinPath $deplShPath ~/bin/
+cp $deplBinPath $deplShPath $binPath
 echoWithStar "copied to local"
 
 # copy to local completions
 if [ "$1" == "--completions" ]; then
     cp $deplCompletionPath ~/.oh-my-zsh/custom/completions/
+    echoWithStar "copied to local completions"
 fi
-echoWithStar "copied to local completions"
 
 # copy to remote
-source sh/.env &&
-scp -p $deplBinPath $deplShPath $remoteUser@$remoteHost:$deployDir
-echoWithStar "copied to remote"
+if [ "$1" == "--remote" ]; then
+    scp -$deplBinPath $deplShPath $remoteUser@$remoteHost:$deployDir
+    echoWithStar "copied to remote"    
+fi
+
 echoWithStar "end"

@@ -1,4 +1,4 @@
-depl.sh pull &&
+depl.sh gitPull &&
 depl.sh gradleCopyLibs &&
-depl.sh shadowJar &&
+depl.sh gradleShadowJar &&
 depl.sh dockerUp
