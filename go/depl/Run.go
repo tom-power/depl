@@ -7,19 +7,24 @@ import (
 	"strings"
 )
 
-var ScriptFor = func(command string) (string, error) {
+var Run = func(command string, explain bool) (string, error) {
 	switch command {
 	case "list":
-		return scriptForListCommands(), nil
+		return fmt.Sprintf("echo \"%s\"", commands()), nil
 	default:
-		return scriptFor(command)
-
+		script, err := scriptFor(command)
+		if err == nil {
+			if explain {
+				return fmt.Sprintf("echo \"%s\"", script), nil
+			}
+			return script, nil
+		}
+		return "", err
 	}
 }
 
-func scriptForListCommands() string {
-	commands := strings.Join(sorted(keys(CommandsToScripts)), " ") + " list"
-	return fmt.Sprintf("echo \"%s\"", commands)
+func commands() string {
+	return strings.Join(sorted(keys(CommandsToScripts)), " ") + " list"
 }
 
 func sorted(input []string) []string {
