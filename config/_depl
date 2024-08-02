@@ -1,5 +1,6 @@
 #compdef depl.sh
-cmds=($(~/bin/_depl list))
+listScripts=$(~/bin/_depl list)
+cmds=($(eval $listScripts))
 _arguments \
   '1:command:(${cmds})' \
   '2:remoteCommandOrExplain:->remoteCommandOrExplain' \
