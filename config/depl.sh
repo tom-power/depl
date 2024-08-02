@@ -1,6 +1,6 @@
 #!/bin/bash
 command=$(_depl "$1" "$2" "$3")
-if [ "$3" == "explain" ] || [ "$2" == "explain" ]; then
+if [[ "$1" == "list" || "$2" == "--explain" || "$3" == "--explain" ]]; then
   echo "$command"
 else
   eval "$command"

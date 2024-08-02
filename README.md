@@ -28,7 +28,7 @@ depl.sh init // sets up a remote git repository and a directory to deploy the pr
 
 ## Usage
 
-`depl.sh list` to see commands and `depl.sh explain <command>` to see what a command does.
+`depl.sh list` to see commands and `depl.sh <command> --explain` to see what a command does.
 
 an example to deploy a project:
 
