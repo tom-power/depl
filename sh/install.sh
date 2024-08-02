@@ -26,7 +26,7 @@ fi
 
 # copy to remote
 if [ "$1" == "--remote" ]; then
-    scp -$deplBinPath $deplShPath $remoteUser@$remoteHost:$deployDir
+    scp -p $deplBinPath $deplShPath $remoteUser@$remoteHost:$deployDir
     echoWithStar "copied to remote"    
 fi
 
