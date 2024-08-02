@@ -6,15 +6,18 @@ import (
 	"strings"
 )
 
-var GetCommand = func(cmd string) (string, error) {
-	if cmd == "list" {
-		return commandList()
+var ScriptFor = func(command string) (string, error) {
+	switch command {
+	case "list":
+		return commandList(), nil
+	default:
+		return scriptFor(command)
+
 	}
-	return command(cmd)
 }
 
-func commandList() (string, error) {
-	return strings.Join(sorted(keys(Commands)), " ") + " list", nil
+func commandList() string {
+	return strings.Join(sorted(keys(CommandsToScripts)), " ") + " list"
 }
 
 func sorted(input []string) []string {
@@ -32,10 +35,10 @@ func keys[K comparable, V any](m map[K]V) []K {
 	return keys
 }
 
-func command(cmd string) (string, error) {
-	command := Commands[cmd]
-	if command == "" {
+func scriptFor(command string) (string, error) {
+	script := CommandsToScripts[command]
+	if script == "" {
 		return "", errors.New("unknown command " + command)
 	}
-	return command, nil
+	return script, nil
 }

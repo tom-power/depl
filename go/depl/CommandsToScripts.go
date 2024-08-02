@@ -1,6 +1,6 @@
 package depl
 
-var Commands = map[string]string{
+var CommandsToScripts = map[string]string{
 	"dockerCatEvent":     dockerCatEvent,
 	"dockerCatLog":       dockerCatLog,
 	"dockerUp":           dockerUp,
