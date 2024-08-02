@@ -2,28 +2,28 @@
 
 ## Installation
 
-Clone this project:
+Install [go](https://golang.org/) then:
 
 ```bash
 git clone https://github.com/tom-power/depl.git
-cd ./depl
+cd ./depl &&
+cp .config/example.install.env sh/.env &&
+nano sh/.env &&
+sh/install.sh [--remote|--completions]
 ```
-
-add .env file
-
-```bash
-cp .config/example.env sh/.env
-```
-install [go](https://golang.org/) and run `sh/build.sh`.
 
 ## Setup
 
-Given a [project](https://github.com/tom-power/depl-example-project) you'd like to deploy, and a remote host you have ssh access to:
+Given a [project](https://github.com/tom-power/depl-example-project) you'd like to deploy, and a remote host you have [ssh](https://www.openssh.com/) access to:
 
 ```bash
-cp ./example.project.env /path/to/project/sh/.env
-cd /path/to/project
-depl.sh init // sets up a remote git repository and a directory to deploy the project from
+cp ./config/example.env /path/to/project/sh/.env &&
+cd /path/to/project &&
+nano .env &&
+# setup git ..
+# setup git on remote
+# push to remote ..
+# clone remote to $deployDir ..
 ```
 
 ## Usage
@@ -33,10 +33,10 @@ depl.sh init // sets up a remote git repository and a directory to deploy the pr
 an example to deploy a project:
 
 ```bash
-depl.sh gradleCopyLibs &&
-depl.sh test &&
-depl.sh push &&
-depl.sh remote deploy
+depl.sh gitPush &&
+depl.sh remote gitPull &&
+depl.sh remote gradleBuild &&
+depl.sh remote dockerUp
 ```
 
 ### Shell integration
