@@ -8,14 +8,6 @@ import (
 )
 
 func Test_command(t *testing.T) {
-	t.Run("can run command", func(t *testing.T) {
-		for command, script := range depl.CommandsToScripts {
-			run, _ := depl.Run(command, false)
-			if !strings.Contains(run, script) {
-				t.Errorf("'%v' should contain '%v'", run, script)
-			}
-		}
-	})
 	t.Run("can list commands", func(t *testing.T) {
 		sh, _ := depl.Run("list", false)
 		for command := range depl.CommandsToScripts {
@@ -28,7 +20,7 @@ func Test_command(t *testing.T) {
 		}
 	})
 
-	t.Run("can explain command", func(t *testing.T) {
+	t.Run("can explain a command", func(t *testing.T) {
 		for command, script := range depl.CommandsToScripts {
 			run, _ := depl.Run(command, true)
 			if !strings.Contains(run, script) {
@@ -36,6 +28,18 @@ func Test_command(t *testing.T) {
 			}
 			if !strings.HasPrefix(run, "echo") {
 				t.Errorf("'%v' should contain '%v'", run, "echo")
+			}
+		}
+	})
+
+	t.Run("can run a command", func(t *testing.T) {
+		for command, script := range depl.CommandsToScripts {
+			run, _ := depl.Run(command, false)
+			if !strings.Contains(run, script) {
+				t.Errorf("'%v' should contain '%v'", run, script)
+			}
+			if strings.HasPrefix(run, "echo") {
+				t.Errorf("'%v' should not contain '%v'", run, "echo")
 			}
 		}
 	})
