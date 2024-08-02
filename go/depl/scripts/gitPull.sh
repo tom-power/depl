@@ -1,4 +1,4 @@
-branch="master"
+branch="main"
 if [[ ! -z "$defaultBranch" ]]; then
     branch=$defaultBranch
 fi
