@@ -8,9 +8,9 @@ _arguments \
 if [[ $state == 'remoteCommandOrExplain' && ${line[1]} == 'remote' ]]; then
   _arguments '2:remoteCommand:(${cmds})'
 else
-  _arguments '2:explain:(explain)'
+  _arguments '2:explain:(--explain)'
 fi
 
 if [[ $state == 'remoteExplain' && ${line[2]} != '' ]]; then
-  _arguments '3:remoteExplain:(explain)'
+  _arguments '3:remoteExplain:(--explain)'
 fi

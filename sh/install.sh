@@ -3,23 +3,27 @@ deplBinPath=./go/build/_depl
 deplShPath=./config/depl.sh
 deplCompletionPath=./config/_depl
 
-function echoWithHyphens() {
-    echo "--------------$1--------------"
+function echoWithStar() {
+    echo "*$1"
 }
 
 # build
-echoWithHyphens "start"
+echoWithStar "start"
 sh/build.sh
-echoWithHyphens "built"
+echoWithStar "built"
 
 # copy to local
 cp -p $deplBinPath $deplShPath ~/bin/
-#cp -p $deplCompletionPath ~/config/.oh-my-zsh/custom/completions/
-echoWithHyphens "copied to local"
+echoWithStar "copied to local"
+
+# copy to local completions
+if [ "$1" == "--completions" ]; then
+    cp $deplCompletionPath ~/.oh-my-zsh/custom/completions/
+fi
+echoWithStar "copied to local completions"
 
 # copy to remote
 source sh/.env &&
 scp -p $deplBinPath $deplShPath $remoteUser@$remoteHost:$deployDir
-echoWithHyphens "copied to remote"
-#scp -p $deplCompletionPath $remoteUser@$remoteHost:~/config/.oh-my-zsh/custom/completions/
-echoWithHyphens "end"
+echoWithStar "copied to remote"
+echoWithStar "end"
