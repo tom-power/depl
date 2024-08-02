@@ -33,7 +33,7 @@ depl.sh init // sets up a remote git repository and a directory to deploy the pr
 an example to deploy a project:
 
 ```bash
-depl.sh copyLibs &&
+depl.sh gradleCopyLibs &&
 depl.sh test &&
 depl.sh push &&
 depl.sh remote deploy

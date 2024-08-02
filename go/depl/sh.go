@@ -5,35 +5,11 @@ import (
 )
 
 var (
-	//go:embed sh/buildLib.sh
-	buildLib string
+	//go:embed sh/dockerCatEvent.sh
+	dockerCatEvent string
 
-	//go:embed sh/copyLibs.sh
-	copyLibs string
-
-	//go:embed sh/build.sh
-	build string
-
-	//go:embed sh/test.sh
-	test string
-
-	//go:embed sh/push.sh
-	push string
-
-	//go:embed sh/remote.sh
-	remote string
-
-	//go:embed sh/pull.sh
-	pull string
-
-	//go:embed sh/deployCopyLibs.sh
-	deployCopyLibs string
-
-	//go:embed sh/shadowJar.sh
-	shadowJar string
-
-	//go:embed sh/submoduleUpdate.sh
-	submoduleUpdate string
+	//go:embed sh/dockerCatLog.sh
+	dockerCatLog string
 
 	//go:embed sh/dockerUp.sh
 	dockerUp string
@@ -41,12 +17,36 @@ var (
 	//go:embed sh/dockerUpDev.sh
 	dockerUpDev string
 
-	//go:embed sh/deploy.sh
-	deploy string
+	//go:embed sh/gitPush.sh
+	gitPush string
 
-	//go:embed sh/catEvent.sh
-	catEvent string
+	//go:embed sh/gitPull.sh
+	gitPull string
 
-	//go:embed sh/catLog.sh
-	catLog string
+	//go:embed sh/gitSubmoduleUpdate.sh
+	gitSubmoduleUpdate string
+
+	//go:embed sh/gradleBuild.sh
+	gradleBuild string
+
+	//go:embed sh/gradleBuildLib.sh
+	gradleBuildLib string
+
+	//go:embed sh/gradleCopyLibs.sh
+	gradleCopyLibs string
+
+	//go:embed sh/gradleCopyLibsAll.sh
+	gradleCopyLibsAll string
+
+	//go:embed sh/gradleDeploy.sh
+	gradleDeploy string
+
+	//go:embed sh/gradleTest.sh
+	gradleTest string
+
+	//go:embed sh/gradleShadowJar.sh
+	gradleShadowJar string
+
+	//go:embed sh/remote.sh
+	remote string
 )
