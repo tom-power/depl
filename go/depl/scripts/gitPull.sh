@@ -1,3 +1,5 @@
+. sh/.env &&
+
 branch="main"
 if [[ ! -z "$defaultBranch" ]]; then
     branch=$defaultBranch
