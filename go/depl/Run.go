@@ -25,7 +25,7 @@ func contentFor(command string) (string, error) {
 	case "list":
 		return commands(), nil
 	default:
-		return scriptFor(command)
+		return contentFromScriptFor(command)
 	}
 }
 
@@ -33,10 +33,10 @@ func commands() string {
 	return strings.Join(sorted(keys(CommandsToScripts)), " ") + " list"
 }
 
-func scriptFor(command string) (string, error) {
-	script := CommandsToScripts[command]
-	if script == "" {
+func contentFromScriptFor(command string) (string, error) {
+	content := CommandsToScripts[command]
+	if content == "" {
 		return "", errors.New("unknown command " + command)
 	}
-	return script, nil
+	return content, nil
 }
