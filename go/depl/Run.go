@@ -2,23 +2,30 @@ package depl
 
 import (
 	"errors"
-	"fmt"
 	"strings"
 )
 
 var Run = func(command string, explain bool) (string, error) {
+	content, err := contentFor(command)
+	if err != nil {
+		return "", err
+	}
+	return echoFor(command, explain) + content, nil
+}
+
+func echoFor(command string, explain bool) string {
+	if explain || command == "list" {
+		return "echo "
+	}
+	return ""
+}
+
+func contentFor(command string) (string, error) {
 	switch command {
 	case "list":
-		return fmt.Sprintf("echo \"%s\"", commands()), nil
+		return commands(), nil
 	default:
-		script, err := scriptFor(command)
-		if err == nil {
-			if explain {
-				return fmt.Sprintf("echo \"%s\"", script), nil
-			}
-			return script, nil
-		}
-		return "", err
+		return scriptFor(command)
 	}
 }
 
