@@ -10,7 +10,7 @@ import (
 func Test_command(t *testing.T) {
 	t.Run("can list commands", func(t *testing.T) {
 		run, _ := depl.Run("list", false)
-		for command := range depl.CommandsToScripts {
+		for command := range depl.CommandToScript {
 			if !strings.Contains(run, command) {
 				t.Errorf("'%v' should contain '%v'", run, command)
 			}
@@ -25,7 +25,7 @@ func Test_command(t *testing.T) {
 	})
 
 	t.Run("can explain a command", func(t *testing.T) {
-		for command, script := range depl.CommandsToScripts {
+		for command, script := range depl.CommandToScript {
 			run, _ := depl.Run(command, true)
 			if !strings.Contains(run, script) {
 				t.Errorf("'%v' should contain '%v'", run, script)
@@ -37,7 +37,7 @@ func Test_command(t *testing.T) {
 	})
 
 	t.Run("can run a command", func(t *testing.T) {
-		for command, script := range depl.CommandsToScripts {
+		for command, script := range depl.CommandToScript {
 			run, _ := depl.Run(command, false)
 			if !strings.Contains(run, script) {
 				t.Errorf("'%v' should contain '%v'", run, script)

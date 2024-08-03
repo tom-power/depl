@@ -4,7 +4,7 @@ import (
 	_ "embed"
 )
 
-var CommandsToScripts = map[string]string{
+var CommandToScript = map[string]string{
 	"dockerCatEvent":     dockerCatEvent,
 	"dockerCatLog":       dockerCatLog,
 	"dockerUp":           dockerUp,
