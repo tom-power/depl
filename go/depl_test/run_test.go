@@ -9,14 +9,18 @@ import (
 
 func Test_command(t *testing.T) {
 	t.Run("can list commands", func(t *testing.T) {
-		sh, _ := depl.Run("list", false)
+		run, _ := depl.Run("list", false)
 		for command := range depl.CommandsToScripts {
-			if !strings.Contains(sh, command) {
-				t.Errorf("'%v' should contain '%v'", sh, command)
+			if !strings.Contains(run, command) {
+				t.Errorf("'%v' should contain '%v'", run, command)
 			}
 		}
-		if !strings.Contains(sh, "list") {
-			t.Errorf("'%v' should contain '%v'", sh, "list")
+		if !strings.Contains(run, "list") {
+			t.Errorf("'%v' should contain '%v'", run, "list")
+		}
+
+		if !strings.HasPrefix(run, "echo") {
+			t.Errorf("'%v' should contain '%v'", run, "echo")
 		}
 	})
 
