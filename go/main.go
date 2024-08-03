@@ -9,11 +9,11 @@ import (
 )
 
 func main() {
-	script, err := depl.Run(command(), explain())
+	content, err := depl.Run(command(), explain())
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Print(script)
+	fmt.Print(content)
 }
 
 func command() string {
