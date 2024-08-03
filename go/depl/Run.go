@@ -30,11 +30,11 @@ func contentFor(command string) (string, error) {
 }
 
 func commands() string {
-	return strings.Join(sorted(keys(CommandsToScripts)), " ") + " list"
+	return strings.Join(sorted(keys(CommandToScript)), " ") + " list"
 }
 
 func contentFromScriptFor(command string) (string, error) {
-	content := CommandsToScripts[command]
+	content := CommandToScript[command]
 	if content == "" {
 		return "", errors.New("unknown command " + command)
 	}
