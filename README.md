@@ -5,7 +5,7 @@
 Install [go](https://golang.org/) then:
 
 ```bash
-git clone https://github.com/tom-power/depl.git
+git clone https://github.com/tom-power/depl.git &&
 cd ./depl &&
 cp .config/example.install.env sh/.env &&
 nano sh/.env &&
@@ -19,7 +19,7 @@ Given a [project](https://github.com/tom-power/depl-example-project) you'd like 
 ```bash
 cp ./config/example.env /path/to/project/sh/.env &&
 cd /path/to/project &&
-nano .env &&
+nano .env
 # setup git ..
 # setup git on remote
 # push to remote ..
