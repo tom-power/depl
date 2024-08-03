@@ -7,7 +7,7 @@ import (
 	"github.com/tom-power/depl/depl"
 )
 
-func Test_command(t *testing.T) {
+func Test_run(t *testing.T) {
 	t.Run("can list commands", func(t *testing.T) {
 		run, _ := depl.Run("list", false)
 		for command := range depl.CommandToScript {
