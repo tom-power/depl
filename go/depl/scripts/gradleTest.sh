@@ -1,5 +1,5 @@
-if [[ -f sh/build.sh ]]; then
-  sh/build.sh
+if [[ -f sh/test.sh ]]; then
+  sh/test.sh
 else
-  ./gradlew build -Denv=local --parallel
+  ./gradlew test -Denv=local --parallel
 fi
