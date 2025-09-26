@@ -1,7 +1,7 @@
 #!/bin/bash
 deplBinPath=./go/build/_depl
 deplShPath=./config/depl.sh
-deplCompletionPath=./config/_deplCompdef
+deplCompletionPath=./config/_depl
 
 function echoWithStar() {
     echo "*$1"
