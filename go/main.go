@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	content, err := depl.Run(command(), explain())
+	content, err := depl.Run(command())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -18,8 +18,4 @@ func main() {
 
 func command() string {
 	return os.Args[1]
-}
-
-func explain() bool {
-	return depl.Contains(os.Args, "--explain")
 }

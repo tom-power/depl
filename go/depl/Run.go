@@ -5,19 +5,12 @@ import (
 	"strings"
 )
 
-var Run = func(command string, explain bool) (string, error) {
+var Run = func(command string) (string, error) {
 	content, err := contentFor(command)
 	if err != nil {
 		return "", err
 	}
-	return echoFor(command, explain) + content, nil
-}
-
-func echoFor(command string, explain bool) string {
-	if explain || command == "list" {
-		return "echo "
-	}
-	return ""
+	return content, nil
 }
 
 func contentFor(command string) (string, error) {
